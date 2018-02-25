@@ -1,27 +1,27 @@
 module.exports = function longestConsecutiveLength(array) {
-     if (array.length==0){return 0;}
+   if (array.length==0){return 0;}
    if (array.length==1){return 1;}
+
 function compareNumeric(a, b) {
   if (a > b) return 1;
   if (a < b) return -1;
 }
-
-
-
 array.sort(compareNumeric);
-var sum=[];
-var j=0;
 var count=1;
-for (var i=1; i<array.length;i++){
-	if ((array[i]-array[i-1])==1){
-		sum[j]=count;
+var sum=0;
+for (var i=1;i<array.length-1;i++){
+	if((array[i]-array[i-1]==1)||(array[i]-array[i-1]==0))
+		{if (array[i]-array[i-1]==0){
+			continue;
+		}
 		count++;
-		j++;
-	}
-	else {count =1;}
-	
+	} else { count=1;}
+	if (count>sum)
+	{
+		sum=count;
+		}
+
 }
-sum.sort(compareNumeric);
- 
-return (sum[sum.length-1]+1); 
+
+return sum;
 }
